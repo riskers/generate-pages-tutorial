@@ -6,7 +6,9 @@
 git clone https://github.com/fe-config/generate-pages-tutorial 
 ```
 
-> 需要注意每一步的 `webpack.config.js` 和 `pageage.json` 
+> 这里使用的是 webpack 1.x
+> 
+> 注意每一步的 `webpack.config.js` 和 `pageage.json` 
 
 ## 一、基本 JavaScript 模块的处理
 
@@ -153,4 +155,58 @@ if(ENV == 'DEV') {
 
 ## 四、ES2015 && babel
 
+如果你要在 webpack 中配置 ES2015 的开发环境，需要 babel 的帮助：
 
+* babel-core 
+* babel-loader 
+* babel-preset-es2015 
+* babel-preset-stage-0
+* babel-plugin-add-module-exports
+* babel-plugin-transform-runtime
+
+```shell
+cd 4_es2015
+npm install
+npm run dev
+```
+
+然后在 `webpack.config.js` 中：
+
+```js
+{
+    test: /\.js$/,
+    loader: "babel",
+    exclude: /node_modules/
+}
+```
+
+注意 `exclude: /node_modules/` 很重要，否则 babel 可能会把 `node_modules` 中所有模块都用 babel 编译一遍!
+
+并且，在根目录下新建 `.babelrc`：
+
+```js
+{
+    presets: [
+        "es2015",
+        "stage-0"
+    ],
+    plugins: [
+        "transform-runtime",
+        "add-module-exports"
+    ]   
+}
+```
+
+然后我们就可以写我们可爱的 ES2015 了：
+
+```js
+import './style.css'
+import { log } from '../common/index.js'
+```
+
+## 五、引入库
+
+commonPlugin externals ProvidePlugin
+
+## 六、部署
+## 七、代理
