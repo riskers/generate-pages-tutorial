@@ -1,6 +1,10 @@
 使用 webpack 已经将近一年了，期间用它构建过4、5个项目，踩过一些坑，现在用自己的理解记录下来。
 
-我做了一个 webpack 开发多页面的脚手架 https://github.com/fe-config/generate-pages ，你可以试试看。现在我根据这个项目讲解怎么使用 webpack 开发多页面项目。
+我现在教你一步一步如何搭建 webpack 开发的多页面项目。
+
+```shell
+git clone https://github.com/fe-config/generate-pages-tutorial 
+```
 
 ## 1. 基本配置
 
@@ -25,6 +29,8 @@ npm run build
 打开 `pages/page1.html` 和 `pages/page2.html` 就可以看到我们的js模块生效了：
 
 ![](./images/multi_pages.jpg)
+
+
 
 
 
