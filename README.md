@@ -6,6 +6,8 @@
 git clone https://github.com/fe-config/generate-pages-tutorial 
 ```
 
+> 需要注意每一步的 `webpack.config.js` 和 `pageage.json` 
+
 ## 一、基本 JavaScript 模块的处理
 
 ```shell
@@ -29,7 +31,7 @@ npm run build
 打开 `page1.html` 和 `page2.html` 就可以看到我们的js模块生效了。现在进入下一步!
 
 
-## 二、CSS 的处理
+## 二、CSS 模块的处理
 
 通过上一步，我们已经解决了 JavaScript 模块的问题，而页面中还有 CSS 。webpack 默认是只处理 JavaScript 的，所以我们要引入 `css-loader` 和 `style-loader` 来处理 CSS。
 
@@ -107,69 +109,48 @@ postcss: function() {
 
 ## 三、reload
 
-刚才2章我们已经掌握
+上面2节我们已经掌握 JS 模块和 CSS 模块的处理，并且能够让 CSS 独立生成文件了，现在我们觉得每次修改代码然后 `build` 再刷新浏览器这个过程实在太慢了，而且也没必要每修改一行代码，就生成新文件，这是构建速度慢的主要原因。
 
 `webpack-dev-server` 是 webpack 自带的一个开发服务器，支持热替换、代理等等功能。
 
 ```shell
-cd 3_css
+cd 3_reload
 npm install
-npm run build
+npm run dev
 ```
 
+打开 `0.0.0.0:8888/page1.html` ，你就可以看到页面了。而且无论你修改 `main.js`、 `style.css`或 `tpl/page1.html` 都会让浏览器自动刷新。
 
+这里使用了：
 
+* html-webpack-plugin: 在页面中自动注入 js 和 css 
+* html-webpack-harddisk-plugin: 每次修改 `pages/tpl` 内文件时，会自动在 `pages/html` 内生成对应的文件
+* raw-loader: 可以 `require` html 文件，做到每修改一次 tpl 文件，浏览器自动刷新一次页面
 
+还有一点值得注意，因为 reload 功能是开发时才需要的，所以我们在 `build` 的时候要把这部分剔除，`cross-env` 和 `DefinePlugin` 的配合可以做到这点。
 
+* [cross-env](https://github.com/kentcdodds/cross-env) 能够不分系统地在全局注入变量，下面这条命令就是将 DEV 注入 ENV 环境变量
 
-
-
-
-
-
-
-
-
-关于 webpack 是什么，有什么作用我就不介绍了，网上一搜一大堆。不过网上搜到的多数是怎么使用 webpack 开发 React 或者 Vue，但其实使用 webpack 开发多页面也是很方便的，因为 webpack 本质就是一个打包工具。
-
-
-
-## 入口 entry
-
-```js
-entry: {
-    'vendor': [
-        'jquery'
-    ],
-    'page1/main': [
-        './src/page1/main'
-    ],
-    'page2/main': [
-        './src/page2/main'
-    ]
-}
+```
+cross-env ENV=DEV webpack-dev-server --inline --hot --quiet --progress --content-base pages/html  --host 0.0.0.0 --port 8888
 ```
 
-多页面其实就是多入口，`page1/main`、`page2/main` 对应一个页面的主 js 逻辑，`vendor` 是每个页面都会用的模块，这里是 `jquery`。然后使用 `ProvidePlugin` 就可以不在每个模块中 `import` 他们而直接使用 `$` 了：
+* DefinePlugin 将 `process.env.ENV` 这个环境变量注入 `ENV` 中
 
 ```js
-new webpack.ProvidePlugin({
-    $: 'jquery'
+new webpack.DefinePlugin({
+    'ENV': JSON.stringify(process.env.ENV)
 })
 ```
 
-然后使用 `webpack.optimize.CommonsChunkPlugin` 插件
+* 在 `main.js` 中就可以区分是开发环境还是生产环境了：
 
 ```js
-new webpack.optimize.CommonsChunkPlugin('vendor','vendor.js'),
+if(ENV == 'DEV') {
+    require('pages/html/page1.html')    
+}
 ```
 
-## 模块映射资源和模板
-
-入口每个模块都定义好了之后，接下来就是就是把每个页面的模块与
-
-## webpack-dev-server
-
-
+## 四、ES2015 && babel
 
 
