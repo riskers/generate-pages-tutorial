@@ -1,0 +1,10 @@
+$bodyColor: #333;
+$textColor: #FFF;
+
+body {
+	background: $bodyColor;
+
+	h1 {
+		color: $textColor;
+	}
+}

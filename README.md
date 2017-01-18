@@ -6,11 +6,11 @@
 git clone https://github.com/fe-config/generate-pages-tutorial 
 ```
 
-## 1. 基本配置
+## 一、基本配置
 
 ```shell
 cd 1_multi_pages
-cnpm install
+npm install
 npm run build
 ```
 
@@ -26,9 +26,81 @@ npm run build
 
 这里的目录层级和 entry 中的模块名(`page1/main`、`page2/main`)对应。
 
-打开 `pages/page1.html` 和 `pages/page2.html` 就可以看到我们的js模块生效了：
+打开 `page1.html` 和 `page2.html` 就可以看到我们的js模块生效了。现在进入下一步!
 
-![](./images/multi_pages.jpg)
+
+## 二、CSS 的处理
+
+通过上一步，我们已经解决了 JavaScript 模块的问题，而页面中还有 CSS 。webpack 默认是只处理 JavaScript 的，所以我们要引入 `css-loader` 和 `style-loader` 来处理 CSS。
+
+```shell
+cd 2_css
+npm install
+npm run build
+```
+
+### CSS
+
+```js
+{
+    test: /\.css$/,
+    loaders: ['style', 'css']
+}
+```
+
+loader 是专门处理某些模块的处理器。webpack 只能处理 js ，为了能够处理 CSS ，就需要 `css-loader`；而为了能够在页面中插入 CSS ，还需要 `style-loader`。
+
+打开 `page1.html` 就可以看到 css 生效了。
+
+### less
+
+```js
+{
+    test: /\.less$/,
+    loaders: ['style', 'css', 'less']
+}
+```
+
+如果使用的是 less ，就需要安装 `less` 和 `less-loader`。
+
+打开 `page2.html` 就可以看到 less 生效了。
+
+### sass
+
+```js
+{
+    test: /\.scss$/,
+    loaders: ['style', 'css', 'sass']
+}
+```
+
+如果使用的是 sass ，就需要安装 `node-sass` 和 `sass-loader`。
+
+打开 `page3.html` 就可以看到 less 生效了。
+
+### postcss
+
+```js
+module: {
+    loaders: [
+        {
+            test: /\.css$/,
+            include: ROOT + '/src/page4',
+            loaders: ['style', 'css', 'postcss']
+        }
+    ]
+},
+postcss: function() {
+    return [autoprefixer]
+}
+```
+
+如果使用的是 sass ，就需要安装 `post-loader`，这里是以 `autoprefixer` 为例。
+
+打开 `page4.html` 就可以看到 less 生效了。
+
+## 三、webpack-dev-server
+
 
 
 

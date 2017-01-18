@@ -1,0 +1,17 @@
+body {
+	background: #333;
+}
+
+h1 {
+	color: #FFF;
+}
+
+.f {
+	display: flex;
+	justify-content: space-between;
+	color: #FFF;
+}
+.box {
+	flex: 1;
+	border: 1px solid #eee;
+}
