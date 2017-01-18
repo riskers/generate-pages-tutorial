@@ -5,6 +5,7 @@
   "devDependencies": {
     "autoprefixer": "^6.6.1",
     "css-loader": "^0.26.1",
+    "extract-text-webpack-plugin": "^1.0.1",
     "less": "^2.7.2",
     "less-loader": "^2.2.3",
     "node-sass": "^4.3.0",

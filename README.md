@@ -6,7 +6,7 @@
 git clone https://github.com/fe-config/generate-pages-tutorial 
 ```
 
-## 一、基本配置
+## 一、基本 JavaScript 模块的处理
 
 ```shell
 cd 1_multi_pages
@@ -99,11 +99,23 @@ postcss: function() {
 
 打开 `page4.html` 就可以看到 less 生效了。
 
-## 三、webpack-dev-server
+### 生成 CSS 文件
 
+以上方法都是用 JS 生成 CSS，但是实际上，我们需要的是 CSS 文件，可以使用 `extract-text-webpack-plugin` 来解决。
 
+打开 `page5.html` 可以看到效果
 
+## 三、reload
 
+刚才2章我们已经掌握
+
+`webpack-dev-server` 是 webpack 自带的一个开发服务器，支持热替换、代理等等功能。
+
+```shell
+cd 3_css
+npm install
+npm run build
+```
 
 
 
