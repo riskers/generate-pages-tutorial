@@ -24,7 +24,7 @@ npm run build
 
 打开 `pages/page1.html` 和 `pages/page2.html` 就可以看到我们的js模块生效了：
 
-![](./images/1_multi_pages.jpg)
+![](./images/multi_pages.jpg)
 
 
 
