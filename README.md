@@ -333,3 +333,5 @@ node node_modules/pre-commit/install.js
 我还建立了项目 https://github.com/fe-config/generate-pages ，它包括了最最基本的 webpack 开发多页面骨架，感兴趣的也可以看看。由其是 [map.js 和 模板文件的映射](https://github.com/fe-config/generate-pages/blob/master/webpack.config.js#L18-L26)，这种思路应该可以帮你少写很多代码。
 
 最重要的是，赶紧动手开始使用 webpack 吧!
+
+希望这份教程帮到了你 -_-
