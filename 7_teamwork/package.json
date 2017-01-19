@@ -2,6 +2,7 @@
   "scripts": {
     "dev": "cross-env ENV=DEV webpack-dev-server --inline --hot --quiet --progress --host 0.0.0.0 --port 8888",
     "lint": "eslint src",
+    "precommit": "npm run lint",
     "build": "cross-env CDN=http://cdn.a.com webpack"
   },
   "devDependencies": {
