@@ -206,7 +206,63 @@ import { log } from '../common/index.js'
 
 ## 五、引入库
 
-commonPlugin externals ProvidePlugin
+### CommonsChunkPlugin
 
-## 六、部署
-## 七、代理
+CommonsChunkPlugin 是 webpack 自带的插件，能够把公有模块提取出来：
+
+```js
+plugins: [
+    new webpack.optimize.CommonsChunkPlugin('common','common.js') 
+]
+```
+
+在 `entry` 加入 `common` 以及在 `HtmlWebpackPlugin` 中加入 `common/index.js` 模块，我们就可以看到 `common/index.js` 模块被提取到了 `common.js` 中。否则的话，`page1/main` 和 `page2/main` 中都会打包 `common/index.js` 。
+
+### externals
+
+实际开发中，我们还会在页面使用 `<script>` 引入一些常用库，比如 `jQuery` ，那么我们需要
+
+```js
+// 当在 js 中 require jQuery 时，实际上是指向 `window.jQuery`
+externals: {
+    jQuery: 'window.jQuery'
+}
+```
+
+然后我们就可以在 `page1/main.js` 中使用 `jQuery` 了：
+
+```js
+import $ from 'jQuery'
+$('body')
+    .append('<p>this is jQuery render</p>')
+    .css('color', '#FFF')
+```
+
+### ProvidePlugin
+
+当然，对于 `jQuery` 这种每个页面都会使用到的库来说，每次都要 `import $ from 'jQuery'` 显得很不优雅。可以这样配置：
+
+```js
+plugins: [
+    new webpack.ProvidePlugin({
+        $: 'jquery'
+    })
+]
+```
+
+这样就可以像 `page2/main.js` 中那样了：
+
+```js
+$('body')
+    .append('<p>this is jQuery render</p>')
+    .css('color', '#3f3f3f')
+```
+
+## 六、代理
+
+devServer: 
+
+## 七、部署
+
+pre-commit && eslint
+

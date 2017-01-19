@@ -8,6 +8,7 @@ var HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin')
 
 module.exports = {
 	entry: {
+		'common': ROOT + '/src/common/index.js',
 		'page1/main': ROOT + '/src/page1/main',
 		'page2/main': ROOT + '/src/page2/main'
 	},
@@ -33,6 +34,9 @@ module.exports = {
 			}
 		]
 	},
+	externals: {
+		jQuery: 'window.jQuery'
+	},
 	resolve: {
 		alias: {
 			pages: ROOT + '/pages'
@@ -47,14 +51,18 @@ module.exports = {
 			alwaysWriteToDisk: true,
 			filename: ROOT + '/pages/html/page1.html',
 			template: ROOT + '/pages/tpl/page1.html',
-			chunks: ['page1/main']
+			chunks: ['common', 'page1/main']
 		}),
 		new HtmlWebpackPlugin({
 			alwaysWriteToDisk: true,
 			filename: ROOT + '/pages/html/page2.html',
 			template: ROOT + '/pages/tpl/page2.html',
-			chunks: ['page2/main']
+			chunks: ['common', 'page2/main']
 		}),
 		new HtmlWebpackHarddiskPlugin(),
+		new webpack.optimize.CommonsChunkPlugin('common','common.js'),
+		new webpack.ProvidePlugin({
+			$: 'jQuery'
+		})
 	]
 }
