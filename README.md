@@ -305,10 +305,24 @@ php -S 127.0.0.1:8000 -t ./pages/html
 
 ## 七、团队协作
 
-到此为止，一个 webpack 搭建的多页面开发环境已经完成了，还有一些要说的。
+到此为止，一个 webpack 搭建的多页面开发环境已经完成了，还有一些与 webpack 无关的话题要注意一下。
 
+### ESLint
 
+[ESLint](http://eslint.org/) 是代码检查工具，这里不多介绍了。如果你使用的是 es2015 ，记得安装 `babel-eslint` 就好。
 
-[pre-commit](http://www.zcfy.cc/article/633) && eslint
+### pre-commit
+
+[pre-commit](https://github.com/observing/pre-commit) 是一个很好用的工具，你可以使用它强制性地让团队成员在 commit 代码前执行任何命令(ESLint、测试等等)
+
+```js
+"scripts": {
+    "lint": "eslint app/src/ app/stylesheets"
+},
+"precommit": [ "lint" ]
+```
+
 
 ## 八、一个脚手架模板
+
+
