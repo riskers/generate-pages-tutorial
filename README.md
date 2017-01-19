@@ -287,15 +287,27 @@ npm install
 npm run dev
 ```
 
-为了模拟一个后端环境，这里使用 PHP 在 8000 端口开启服务：
+为了模拟一个后端环境，这里使用 PHP 自带的 server 在 8000 端口开启服务：
 
 ```shell
 php -S 127.0.0.1:8000 -t ./pages/html
 ```
 
-然后打开 `http://0.0.0.0:8888/page1.php` 
+然后打开 `http://0.0.0.0:8888/page1.php` 就可以看到页面被 webpack-dev-server 代理过来了。你可以在 `pages/html` 下得到正式的已经配置好资源路径的页面。
+
+执行 `npm run build` 后，你会在 `pages/html` 下得到相应 CDN 地址的资源路径，CDN 地址可以在 `npm scripts` 下配置：
+
+```js
+"scripts": {
+    "build": "cross-env CDN=http://cdn.a.com webpack"
+}
+```
 
 ## 七、团队协作
+
+到此为止，一个 webpack 搭建的多页面开发环境已经完成了，还有一些要说的。
+
+
 
 [pre-commit](http://www.zcfy.cc/article/633) && eslint
 
