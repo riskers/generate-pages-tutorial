@@ -8,7 +8,6 @@ var HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin')
 
 module.exports = {
 	entry: {
-		'common': ROOT + '/src/common/index.js',
 		'page1/main': ROOT + '/src/page1/main',
 		'page2/main': ROOT + '/src/page2/main'
 	},

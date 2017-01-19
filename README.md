@@ -222,7 +222,7 @@ plugins: [
 ]
 ```
 
-在 `entry` 加入 `common` 以及在 `HtmlWebpackPlugin` 中加入 `common/index.js` 模块，我们就可以看到 `common/index.js` 模块被提取到了 `common.js` 中。否则的话，`page1/main` 和 `page2/main` 中都会打包 `common/index.js` 。
+在 `HtmlWebpackPlugin` 中加入 `common/index.js` 模块，我们就可以看到 `common/index.js` 模块被提取到了 `common.js` 中。否则的话，`page1/main` 和 `page2/main` 中都会打包 `common/index.js` 。
 
 ### externals
 
@@ -266,9 +266,37 @@ $('body')
 
 ## 六、代理
 
-devServer: 
+经过上面几个步骤，我们基本上已经完成了 webpack 的开发环境搭建，但是 pages 里全是静态页面，而我们后端实际上使用的可能是 PHP、Python 甚至是 Node 渲染的动态页面。
 
-## 七、部署
+现在我们要解决的问题是把现有的 webpack 开发环境和已有的后端环境结合起来，我们这里使用的是 `webpack-dev-server` 的 `proxy` 功能：
 
-pre-commit && eslint
+```js
+devServer: {
+    proxy: {
+        '*': {
+            target: 'http://localhost:8000'
+        }
+    }
+}
+```
 
+
+```shell
+cd 6_proxy
+npm install
+npm run dev
+```
+
+为了模拟一个后端环境，这里使用 PHP 在 8000 端口开启服务：
+
+```shell
+php -S 127.0.0.1:8000 -t ./pages/html
+```
+
+然后打开 `http://0.0.0.0:8888/page1.php` 
+
+## 七、团队协作
+
+[pre-commit](http://www.zcfy.cc/article/633) && eslint
+
+## 八、一个脚手架模板
