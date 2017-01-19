@@ -206,6 +206,12 @@ import { log } from '../common/index.js'
 
 ## 五、引入库
 
+```shell
+cd 5_library
+npm install
+npm run dev
+```
+
 ### CommonsChunkPlugin
 
 CommonsChunkPlugin 是 webpack 自带的插件，能够把公有模块提取出来：
