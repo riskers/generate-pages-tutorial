@@ -1,11 +1,11 @@
-require('./style.css')
+import './style.css'
 
 if(ENV == 'DEV') {
-	require('pages/html/page2.html')	
+	require('pages/html/page2.html')
 }
 
 console.log(ENV)
 
-var log = require('../common/index.js').log
+import { log } from '../common/index.js'
 
 log('this is page2')

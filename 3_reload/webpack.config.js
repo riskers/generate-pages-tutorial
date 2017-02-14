@@ -17,14 +17,17 @@ module.exports = {
 		publicPath: '/dist'
 	},
 	module: {
-		loaders: [
+		rules: [
 			{
 				test: /\.css$/,
-				loader: extractCSS.extract('style', 'css')
+				use: extractCSS.extract({
+					fallback: 'style-loader',
+					loader: 'css-loader'
+				})
 			},
 			{
 				test: /.html$/,
-				loader: 'raw'
+				use: 'raw-loader'
 			}
 		]
 	},
