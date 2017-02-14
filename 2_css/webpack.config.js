@@ -17,34 +17,58 @@ module.exports = {
 		path: ROOT + '/dist'
 	},
 	module: {
-		loaders: [
+		rules: [
 			{
 				test: /\.css$/,
 				include: ROOT + '/src/page1',
-				loaders: ['style', 'css']
+				use: [
+					'style-loader',
+					'css-loader'
+				]
 			},
 			{
 				test: /\.less$/,
-				loaders: ['style', 'css', 'less']
+				use: [
+					'style-loader',
+					'css-loader',
+					'less-loader'
+				]
 			},
 			{
 				test: /\.scss$/,
-				loaders: ['style', 'css', 'sass']
+				use: [
+					'style-loader',
+					'css-loader',
+					'sass-loader'
+				]
 			},
 			{
 				test: /\.css$/,
 				include: ROOT + '/src/page4',
-				loaders: ['style', 'css', 'postcss']
+				use: [
+					'style-loader',
+					'css-loader',
+					{
+						loader: 'postcss-loader',
+						options: {
+							plugins: function() {
+								return [
+									autoprefixer
+								]
+							}
+						}
+					}
+				]
 			},
 			{
 				test: /\.css$/,
 				include: ROOT + '/src/page5',
-				loader: extractCSS.extract('style', 'css')
+				use: extractCSS.extract({
+					fallback: 'style-loader',
+					loader: 'css-loader'
+				})
 			}
 		]
-	},
-	postcss: function() {
-		return [autoprefixer]
 	},
 	plugins: [
 		extractCSS

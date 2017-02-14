@@ -1,5 +1,5 @@
-require('./style.less')
+import './style.less'
 
-var log = require('../common/index.js').log
+import { log } from '../common/index.js'
 
 log('this is page2')

@@ -5,14 +5,14 @@
   "devDependencies": {
     "autoprefixer": "^6.6.1",
     "css-loader": "^0.26.1",
-    "extract-text-webpack-plugin": "^1.0.1",
+    "extract-text-webpack-plugin": "2",
     "less": "^2.7.2",
     "less-loader": "^2.2.3",
-    "node-sass": "^4.3.0",
+    "node-sass": "^4.5.0",
     "postcss-loader": "^1.2.2",
-    "sass-loader": "^4.1.1",
+    "sass-loader": "^6.0.0",
     "style-loader": "^0.13.1",
-    "webpack": "^1.14.0"
+    "webpack": "^2.2.1"
   },
   "dependencies": {}
 }
