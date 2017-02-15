@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>page1</title>
-<link href="/dist/page1/main.css" rel="stylesheet"></head>
+<link href="http://cdn.a.com/page1/main.css" rel="stylesheet"></head>
 <body>
 	<h1>
 		<?php
@@ -12,5 +12,5 @@
 	</h1>
 
 	<script src="https://cdn.staticfile.org/jquery/3.1.1/jquery.min.js"></script>
-<script type="text/javascript" src="/dist/common.js"></script><script type="text/javascript" src="/dist/page1/main.js"></script></body>
+<script type="text/javascript" src="http://cdn.a.com/common.js"></script><script type="text/javascript" src="http://cdn.a.com/page1/main.js"></script></body>
 </html>

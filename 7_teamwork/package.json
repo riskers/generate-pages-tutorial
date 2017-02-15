@@ -1,10 +1,12 @@
 {
   "scripts": {
-    "dev": "cross-env ENV=DEV webpack-dev-server --inline --hot --quiet --progress --host 0.0.0.0 --port 8888",
+    "dev": "cross-env ENV=DEV webpack-dev-server --hot --quiet --progress --host 0.0.0.0 --port 8888",
     "lint": "eslint src",
     "build": "cross-env CDN=http://cdn.a.com webpack"
   },
-  "pre-commit": ["lint"],
+  "pre-commit": [
+    "lint"
+  ],
   "devDependencies": {
     "babel-core": "^6.21.0",
     "babel-eslint": "^7.1.1",
@@ -16,14 +18,14 @@
     "cross-env": "^3.1.4",
     "css-loader": "^0.26.1",
     "eslint": "^3.13.1",
-    "extract-text-webpack-plugin": "^1.0.1",
+    "extract-text-webpack-plugin": "beta",
     "html-webpack-harddisk-plugin": "^0.0.2",
     "html-webpack-plugin": "^2.26.0",
     "pre-commit": "^1.2.2",
     "raw-loader": "^0.5.1",
     "style-loader": "^0.13.1",
-    "webpack": "^1.14.0",
-    "webpack-dev-server": "^1.16.2"
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.3.0"
   },
   "dependencies": {}
 }

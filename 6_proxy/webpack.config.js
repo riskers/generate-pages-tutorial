@@ -28,16 +28,19 @@ module.exports = {
 		loaders: [
 			{
 			    test: /\.js$/,
-			    loader: "babel",
+			    use: "babel-loader",
 			    exclude: /node_modules/
 			},
 			{
 				test: /\.css$/,
-				loader: extractCSS.extract('style', 'css')
+				use: extractCSS.extract({
+					fallback: 'style-loader',
+					loader: 'css-loader'
+				})
 			},
 			{
 				test: /.php$/,
-				loader: 'raw'
+				use: 'raw-loader'
 			}
 		]
 	},
@@ -67,7 +70,10 @@ module.exports = {
 			chunks: ['common', 'page2/main']
 		}),
 		new HtmlWebpackHarddiskPlugin(),
-		new webpack.optimize.CommonsChunkPlugin('common','common.js'),
+		new webpack.optimize.CommonsChunkPlugin({
+			name: 'common',
+			filename: 'common.js'
+		}),
 		new webpack.ProvidePlugin({
 			$: 'jQuery'
 		})
