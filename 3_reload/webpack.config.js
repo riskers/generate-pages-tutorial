@@ -27,7 +27,7 @@ module.exports = {
 			},
 			{
 				test: /.html$/,
-				use: 'raw-loader'
+				use: ['raw-loader']
 			}
 		]
 	},
@@ -53,6 +53,6 @@ module.exports = {
 			template: ROOT + '/pages/tpl/page2.html',
 			chunks: ['page2/main']
 		}),
-		new HtmlWebpackHarddiskPlugin(),
+		new HtmlWebpackHarddiskPlugin()
 	]
 }
